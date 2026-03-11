@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUSTOMERCARE – FREE TYPE C REQUEST</title>
+
+<style>
+  :root {
+    --primary: #0f4c3a;
+    --primary-dark: #0a3326;
+    --primary-light: #e8f5f0;
+    --accent: #059669;
+    --border: #e5e7eb;
+    --border-focus: #10b981;
+    --text: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --error: #dc2626;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: translate(30%, -30%);
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .header-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #34d399;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .header p {
+    font-size: 15px;
+    opacity: 0.9;
+    font-weight: 400;
+    max-width: 600px;
+  }
+
+  form {
+    padding: 32px;
+  }
+
+  .section {
+    margin-bottom: 32px;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--accent), var(--primary));
+    border-radius: 2px;
+  }
+
+  .form-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-group.full {
+    grid-template-columns: 1fr;
+  }
+
+  .field-wrapper {
+    position: relative;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  .field-wrapper:focus-within label {
+    color: var(--primary);
+  }
+
+  .input-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: color 0.2s;
+  }
+
+  .field-wrapper:focus-within .input-icon {
+    color: var(--accent);
+  }
+
+  input, select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    font-size: 15px;
+    background: var(--white);
+    color: var(--text);
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  input:hover, select:hover {
+    border-color: #d1d5db;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    transform: translateY(-1px);
+  }
+
+  input[readonly] {
+    background: #f9fafb;
+    color: var(--text-muted);
+    cursor: not-allowed;
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 48px;
+  }
+
+  select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  }
+
+  .quantity-field {
+    position: relative;
+  }
+
+  .quantity-field input {
+    padding-left: 48px;
+  }
+
+  .quantity-field::before {
+    content: 'Qty';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--primary-light);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .actions {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .button-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  button {
+    width: 100%;
+    padding: 18px 32px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    letter-spacing: 0.3px;
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  button:hover::before {
+    left: 100%;
+  }
+
+  button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Loading spinner */
+  button.loading {
+    color: transparent;
+  }
+
+  button.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--white);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .success-message {
+    display: none;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: var(--primary-dark);
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid #6ee7b7;
+    animation: slideDown 0.4s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .success-message.show {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .success-message::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    body {
+      padding: 20px 16px;
+      background: var(--bg);
+    }
+
+    .container {
+      border-radius: 12px;
+    }
+
+    .header {
+      padding: 28px 24px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+    }
+
+    form {
+      padding: 24px;
+    }
+
+    .form-group {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    input, select {
+      font-size: 16px; /* prevents iOS zoom */
+      padding: 16px;
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+    }
+    
+    .container {
+      box-shadow: none;
+      max-width: 100%;
+    }
+    
+    button, .header-badge {
+      display: none;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="header-content">
+      <div class="header-badge">Compliance Portal</div>
+      <h1>CUSTOMER CARE – FREE TYPE C REQUEST</h1>
+      <p>Associate-requested issuance of free Type C polo shirts for anniversary celebrations and special recognition events</p>
+    </div>
+  </div>
+
+  <form id="requestForm">
+    
+    <div id="successMessage" class="success-message">
+      Request submitted successfully! Confirmation details have been sent to your email.
+    </div>
+
+    <div class="section">
+      <div class="section-title">Employee Information</div>
+
+      <div class="form-group">
+        <div class="field-wrapper">
+          <label for="headOffice">Head Office</label>
+          <select id="headOffice" required>
+            <option value="">Select Head Office</option>
+            <option>HO Main - Palawan</option>
+            <option>HO Ext.- CRC</option>
+            <option>HO Ext.- MRC</option>
+          </select>
+        </div>
+
+        <div class="field-wrapper">
+          <label for="section">Section</label>
+          <select id="section" required>
+            <option value="">Select Section</option>
+            <option>Makati Support Team</option>
+            <option>Cebu Support Team</option>
+            <option>Calls and SMS Support</option>
+            <option>Chat and Email Support</option>
+            <option>Complaint and Investigation Support</option>
+            <option>Admin</option>
+            <option>Head of CustomerCare</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field-wrapper">
+          <label for="employeeNo">Employee Number</label>
+          <input type="text" id="employeeNo" placeholder="Enter employee ID" required>
+        </div>
+
+        <div class="field-wrapper">
+          <label for="employer">Employer</label>
+          <select id="employer" required>
+            <option value="">Select Employer</option>
+            <option>EUPI</option>
+            <option>PPSI</option>
+            <option>PFSI</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field-wrapper">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="Enter first name" required>
+        </div>
+
+        <div class="field-wrapper">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Enter last name" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Polo Shirt Details</div>
+
+      <div class="form-group">
+        <div class="field-wrapper">
+          <label for="poloCategory">Polo Shirt Category</label>
+          <select id="poloCategory" required>
+            <option value="">Select Category</option>
+            <option>Men</option>
+            <option>Women</option>
+          </select>
+        </div>
+
+        <div class="field-wrapper">
+          <label for="poloSize">Polo Shirt Size</label>
+          <select id="poloSize" required>
+            <option value="">Select Size</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>2XL</option>
+            <option>3XL</option>
+            <option>4XL</option>
+            <option>5XL</option>
+            <option>6XL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field-wrapper quantity-field">
+          <label for="yellowPCS">Yellow Version</label>
+          <input type="number" id="yellowPCS" min="0" placeholder="0" value="0">
+        </div>
+
+        <div class="field-wrapper quantity-field">
+          <label for="greenPCS">Green Version</label>
+          <input type="number" id="greenPCS" min="0" placeholder="0" value="0">
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Additional Details</div>
+
+      <div class="form-group">
+        <div class="field-wrapper">
+          <label for="remarks">Remarks</label>
+          <select id="remarks">
+            <option value="">Select Remark Type</option>
+            <option>Free-Anniversary</option>
+            <option>Salded</option>
+          </select>
+        </div>
+
+        <div class="field-wrapper">
+          <label for="anniversaryDate">Date of Anniversary</label>
+          <input type="date" id="anniversaryDate">
+        </div>
+      </div>
+
+      <div class="form-group full">
+        <div class="field-wrapper">
+          <label for="status">Request Status</label>
+          <input type="text" id="status" value="Pending" readonly>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="button-wrapper">
+        <button type="submit">
+          <span>Submit Request</span>
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbyo_93PIUg6I9XDzyXrrRjaOancSGccw0Qx086_kSn5vKKRtDq1zsqfEhgddaL_WMjjog/exec";
+const requestForm = document.getElementById("requestForm");
+const submitButton = requestForm.querySelector("button[type=submit]");
+const successMessage = document.getElementById("successMessage");
+
+requestForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // Show submitting effect
+  submitButton.disabled = true;
+  submitButton.classList.add("loading");
+  submitButton.querySelector('span').textContent = "Processing...";
+
+  const data = {
+    headOffice: headOffice.value,
+    section: section.value,
+    employeeNo: employeeNo.value,
+    firstName: firstName.value,
+    lastName: lastName.value,
+    poloCategory: poloCategory.value,
+    poloSize: poloSize.value,
+    employer: employer.value,
+    yellowPCS: yellowPCS.value,
+    greenPCS: greenPCS.value,
+    remarks: remarks.value,
+    anniversaryDate: anniversaryDate.value,
+    status: status.value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(() => {
+    successMessage.classList.add('show');
+    requestForm.reset();
+    setTimeout(() => {
+      successMessage.classList.remove('show');
+    }, 5000);
+  })
+  .catch(() => {
+    alert("Error submitting request. Please try again.");
+  })
+  .finally(() => {
+    // Revert button state
+    submitButton.disabled = false;
+    submitButton.classList.remove("loading");
+    submitButton.querySelector('span').textContent = "Submit Request";
+  });
+});
+</script>
+
+</body>
+</html>
